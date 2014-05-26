@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Drawing.Drawing2D;
 
 namespace GaussJordanReal {
     class GaussJordan {
         DataTable dt;
-        Matrix x;
         public GaussJordan(DataTable dt) {
             this.dt = dt;
         }

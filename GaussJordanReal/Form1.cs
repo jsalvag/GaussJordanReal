@@ -12,6 +12,7 @@ namespace GaussJordanReal {
     public partial class Form1 : Form {
         GaussJordan gauss;
         MatrizInversa inversa;
+        Simplex simp;
         int metodo;
 
         public Form1() {
@@ -21,7 +22,9 @@ namespace GaussJordanReal {
 
         public void dibujarDGV(int vr) {
             dgv_1.Rows.Clear();
+            dgv_1.RowHeadersVisible = false;
             dgv_1.Columns.Clear();
+            dgv_1.ColumnHeadersVisible = true;
             int y = 1, n = 1;
             char x = 'x';
             switch(metodo) {
@@ -55,7 +58,34 @@ namespace GaussJordanReal {
                     }
                     break;
                 case 2:
+                    n = Convert.ToInt32(this.r.Value);
+                    dgv_1.ColumnCount = vr + n + 2;
+                    dgv_1.RowCount = n + 1;
+                    int a = 0, b,m=0;
+                    dgv_1.Columns[a].Name = "Z";
+                    dgv_1.Columns[a].HeaderText = "Z";
+                    for(a = 1; a < vr+1; a++) {
+                        dgv_1.Columns[a].Name = x.ToString() + y.ToString();
+                        dgv_1.Columns[a].HeaderText = x.ToString() + y.ToString();
+                        y++;
+                    }
+                    y = 1;
+                    m = a+n;
+                    for(b = a; b < m; b++) {
+                        dgv_1.Columns[b].Name = "h" + y.ToString();
+                        dgv_1.Columns[b].HeaderText = "h" + y.ToString();
+                        y++;
+                        dgv_1.Columns[b + 1].Name = "sol";
+                        dgv_1.Columns[b + 1].HeaderText = "Solucion";
+                    }
+                    dgv_1.RowHeadersVisible = true;
 
+                    y = 1;
+                    for(a = 0; a < n; a++) {
+                        dgv_1.Rows[a].HeaderCell.Value = "h" + y++.ToString();
+                        dgv_1.Rows[a+1].HeaderCell.Value = "Z";
+                    }
+                    dgv_1.RowHeadersWidth = 60;
                     break;
             }
         }
@@ -106,6 +136,10 @@ namespace GaussJordanReal {
         private void cBox_metodo_SelectedIndexChanged(object sender, EventArgs e) {
             metodo = cBox_metodo.SelectedIndex;
             dibujarDGV(Convert.ToInt32(n.Value));
+            if(metodo == 2)
+                panel3.Show();
+            else
+                panel3.Hide();
         }
 
         private void btn_calcular_Click(object sender, EventArgs e) {
@@ -126,6 +160,7 @@ namespace GaussJordanReal {
                         dgv_1.Rows.Clear();
                         dgv_1.Columns.Clear();
                         dgv_1.ColumnCount = col;
+                        dgv_1.ColumnHeadersVisible = false;
                         for(f = 0; f < fil; f++) {
                             for(c = 0; c < col; c++)
                                 r[c] = re[f, c].ToString();
@@ -136,6 +171,7 @@ namespace GaussJordanReal {
                     }
                     break;
                 case 2:
+                    simp = new Simplex(dgv_dt(dgv_1));
                     break;
             }
         }
