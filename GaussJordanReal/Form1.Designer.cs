@@ -28,7 +28,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.n = new System.Windows.Forms.NumericUpDown();
+            this.num = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.cBox_metodo = new System.Windows.Forms.ComboBox();
             this.btn_calcular = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.n)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.cBox_metodo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.n);
+            this.panel1.Controls.Add(this.num);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -96,24 +96,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cantidad de variables:";
             // 
-            // n
+            // num
             // 
-            this.n.Location = new System.Drawing.Point(177, 6);
-            this.n.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.n.Minimum = new decimal(new int[] {
+            this.num.Location = new System.Drawing.Point(177, 6);
+            this.num.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.num.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.n.Name = "n";
-            this.n.Size = new System.Drawing.Size(41, 26);
-            this.n.TabIndex = 1;
-            this.n.Value = new decimal(new int[] {
+            this.num.Name = "num";
+            this.num.Size = new System.Drawing.Size(41, 26);
+            this.num.TabIndex = 1;
+            this.num.Value = new decimal(new int[] {
             3,
             0,
             0,
             0});
-            this.n.ValueChanged += new System.EventHandler(this.n_ValueChanged);
+            this.num.ValueChanged += new System.EventHandler(this.n_ValueChanged);
             // 
             // label2
             // 
@@ -232,7 +232,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.n)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
@@ -246,7 +246,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown n;
+        private System.Windows.Forms.NumericUpDown num;
         private System.Windows.Forms.Button btn_calcular;
         private System.Windows.Forms.ComboBox cBox_metodo;
         private System.Windows.Forms.Label label2;

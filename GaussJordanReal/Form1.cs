@@ -25,7 +25,7 @@ namespace GaussJordanReal {
             dgv_1.RowHeadersVisible = false;
             dgv_1.Columns.Clear();
             dgv_1.ColumnHeadersVisible = true;
-            int y = 1, n = 1;
+            int y = 1;
             char x = 'x';
             switch(metodo) {
                 case 0:
@@ -41,8 +41,6 @@ namespace GaussJordanReal {
                         }
                         dgv_1.Columns[i + 1].HeaderText = "=";
                     }
-                    foreach(DataGridViewRow dr in dgv_1.Rows)
-                        dr.HeaderCell.Value = "Fila " + (n++).ToString();
                     break;
                 case 1:
                     dgv_1.ColumnCount = vr;
@@ -58,36 +56,62 @@ namespace GaussJordanReal {
                     }
                     break;
                 case 2:
-                    n = Convert.ToInt32(this.r.Value);
-                    dgv_1.ColumnCount = vr + n + 2;
-                    dgv_1.RowCount = n + 1;
-                    int a = 0, b,m=0;
-                    dgv_1.Columns[a].Name = "Z";
-                    dgv_1.Columns[a].HeaderText = "Z";
-                    for(a = 1; a < vr+1; a++) {
-                        dgv_1.Columns[a].Name = x.ToString() + y.ToString();
-                        dgv_1.Columns[a].HeaderText = x.ToString() + y.ToString();
-                        y++;
-                    }
-                    y = 1;
-                    m = a+n;
-                    for(b = a; b < m; b++) {
-                        dgv_1.Columns[b].Name = "h" + y.ToString();
-                        dgv_1.Columns[b].HeaderText = "h" + y.ToString();
-                        y++;
-                        dgv_1.Columns[b + 1].Name = "sol";
-                        dgv_1.Columns[b + 1].HeaderText = "Solucion";
-                    }
+                    int n = Convert.ToInt32(r.Value) + 1;
+                    dgv_1.RowCount = n;
                     dgv_1.RowHeadersVisible = true;
-
-                    y = 1;
-                    for(a = 0; a < n; a++) {
-                        dgv_1.Rows[a].HeaderCell.Value = "h" + y++.ToString();
-                        dgv_1.Rows[a+1].HeaderCell.Value = "Z";
+                    dgv_1.Rows[0].HeaderCell.Value = "Función";
+                    for(int i = 1; i < n; i++) {
+                        dgv_1.Rows[i].HeaderCell.Value = "Restricción " + i.ToString(); ;
                     }
-                    dgv_1.RowHeadersWidth = 60;
+                    dgv_1.ColumnCount = vr + 1;
+                    for(int i = 0; i < vr; i++) {
+                        dgv_1.Columns[i].Name = x.ToString() + y.ToString();
+                        dgv_1.Columns[i].HeaderText = x.ToString() + y.ToString();
+                        x++;
+                        if(x > 'z') {
+                            y++;
+                            x = 'x';
+                        }
+                        dgv_1.Columns[i + 1].HeaderText = "=";
+                    }
                     break;
             }
+        }
+
+        private void dibujarSimplex() {
+            dgv_1.Rows.Clear();
+            dgv_1.Columns.Clear();
+            int n = Convert.ToInt32(this.r.Value),
+                vr = Convert.ToInt32(num.Value),
+                y = 1;
+            char x = 'x';
+            dgv_1.ColumnCount = vr + n + 2;
+            dgv_1.RowCount = n + 1;
+            int a = 0, b, m = 0;
+            dgv_1.Columns[a].Name = "Z";
+            dgv_1.Columns[a].HeaderText = "Z";
+            for(a = 1; a < vr + 1; a++) {
+                dgv_1.Columns[a].Name = x.ToString() + y.ToString();
+                dgv_1.Columns[a].HeaderText = x.ToString() + y.ToString();
+                y++;
+            }
+            y = 1;
+            m = a + n;
+            for(b = a; b < m; b++) {
+                dgv_1.Columns[b].Name = "h" + y.ToString();
+                dgv_1.Columns[b].HeaderText = "h" + y.ToString();
+                y++;
+                dgv_1.Columns[b + 1].Name = "sol";
+                dgv_1.Columns[b + 1].HeaderText = "Solucion";
+            }
+            dgv_1.RowHeadersVisible = true;
+
+            y = 1;
+            for(a = 0; a < n; a++) {
+                dgv_1.Rows[a].HeaderCell.Value = "h" + y++.ToString();
+                dgv_1.Rows[a + 1].HeaderCell.Value = "Z";
+            }
+            dgv_1.RowHeadersWidth = 60;
         }
 
         private void addSolucion(double[] r) {
@@ -130,12 +154,12 @@ namespace GaussJordanReal {
         }
 
         private void n_ValueChanged(object sender, EventArgs e) {
-            dibujarDGV(Convert.ToInt32(n.Value));
+            dibujarDGV(Convert.ToInt32(num.Value));
         }
 
         private void cBox_metodo_SelectedIndexChanged(object sender, EventArgs e) {
             metodo = cBox_metodo.SelectedIndex;
-            dibujarDGV(Convert.ToInt32(n.Value));
+            dibujarDGV(Convert.ToInt32(num.Value));
             if(metodo == 2)
                 panel3.Show();
             else
@@ -172,6 +196,7 @@ namespace GaussJordanReal {
                     break;
                 case 2:
                     simp = new Simplex(dgv_dt(dgv_1));
+                    dibujarSimplex();
                     break;
             }
         }

@@ -13,7 +13,7 @@ namespace GaussJordanReal {
             this.cc = dt.Columns.Count;
         }
 
-        private Boolean construMInv() {
+        private Boolean construMInv() {//construimos una matriz identidad con las dimesiones de la matriz original
             int i, j;
             try {
                 mInv = new double[fc, cc];
@@ -46,7 +46,7 @@ namespace GaussJordanReal {
             }
         }
 
-        private Boolean unirMtz() {
+        private Boolean unirMtz() {//unimos la matriz original a la matriz identidad
             try {
                 construMInv();
                 dt_mtz();
@@ -74,14 +74,14 @@ namespace GaussJordanReal {
 
         void calcular() {
             int i, //columna piloto
-                j, 
-                k, 
-                l,
-                n = mUni.GetLength(1);
+                j, //fila pivote
+                k, //colimpa pivote
+                l, //elemento piloto
+                n = mUni.GetLength(1);//cantidad de columnas de la matriz
             
             double[]
-                fpiv = new double[n],
-                fcer = new double[n];
+                fpiv = new double[n],//fila pivote
+                fcer = new double[n];//fila a modificar
             for(i = 0; i < fc; i++) {//Recorremos la matriz columna por columna
                 for(j = i; j < fc; j++) {//Recorremos la matriz fila por fila
                     for(k = 0; k < n; k++) {//Recorremos cada columna de la fila
@@ -98,28 +98,28 @@ namespace GaussJordanReal {
                             for(l = 0; l < n; l++) {//cargamos la fila en la matriz
                                 mUni[k, l] = fcer[l];
                             }
-                        }
+                        }//Pasamos a la siguiente fila a hacer 0 el elemto piloto
                     }
-                    for(k = 0; k < n; k++) {
+                    for(k = 0; k < n; k++) {//cargamos la fila en la matriz
                         mUni[j, k] = fpiv[k];
                     }
-                }
-            }
+                }//pasamos a la siguiente fila
+            }//evaluamos la siguiente columna
         }
 
         private void uno(ref double[] fila, int ind) {
-            double pil = 1 / fila[ind];
+            double pil = 1 / fila[ind];//calcular inverso de elemento
             int i, n = fila.Length;
             for(i = 0; i < n; i++) {
-                fila[i] *= pil;
+                fila[i] *= pil;//multiplicamos cada elemto por el inverso del elemento piloto
             }
         }
 
         void cero(ref double[] fila, double[] piv, int ind) {
-            double pil = fila[ind] * -1;
+            double pil = fila[ind] * -1;//calculamos el simetrico del elemento piloto
             int i, n = fila.Length;
             for(i = 0; i < n; i++) {
-                fila[i] = (pil * piv[i]) + fila[i];
+                fila[i] = (pil * piv[i]) + fila[i];//multiplicamos cada elemento por el inverso del elemento piloto
             }
         }
 
