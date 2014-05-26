@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Data;
+using System.Drawing.Drawing2D;
 
 namespace GaussJordanReal {
     class GaussJordan {
         DataTable dt;
-
+        Matrix x;
         public GaussJordan(DataTable dt) {
             this.dt = dt;
         }
@@ -12,7 +13,7 @@ namespace GaussJordanReal {
         public bool elimGauseana(double[] r) {
             double[,] a = new double[dt.Rows.Count, dt.Columns.Count];
             double t, s;
-            int i, l, j, k, m, n;
+            int i, j, k, l, m, n;
             i = 0;
             foreach(DataRow dr in dt.Rows) {
                 j = 0;
@@ -20,8 +21,7 @@ namespace GaussJordanReal {
                     a[i, j++] = Convert.ToDouble(d);
                 i++;
             }
-
-
+            
             try {
                 n = r.Length - 1;
                 m = n + 1;
