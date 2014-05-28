@@ -47,22 +47,22 @@ namespace GaussJordanReal {
             Cj = new double[m];
             mtzRest = new double[n, m];
             solOrg = new double[n + 1];
+            aux = new double[rest];
 
             for(k = 0; k < m; k++)
-                Cj[k] = mtz1[0, k];
+                Cj[k] = mtz1[0, k];//separamos la FO
 
             for(i = 0; i < n; i++)
                 for(j = 0; j < m; j++)
-                    mtzRest[i, j] = mtz1[i + 1, j];
+                    mtzRest[i, j] = mtz1[i + 1, j];//separamos las restricciones
 
             for(l = 0; l < n; l++)
-                solOrg[l] = mtz1[l + 1, m];
-            solOrg[l] = 0;
+                solOrg[l] = mtz1[l + 1, m];//separamos los limites
+            solOrg[l] = 0;//agregamos una posicion mas para la solucion de
         }
 
         private Boolean construMInv(int d) {//construimos una matriz identidad con las dimesiones de la matriz original
             int i, j;
-
             try {
                 mtzInv = new double[d, d];
                 for(i = 0; i < d; i++)
