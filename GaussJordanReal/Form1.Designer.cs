@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.num = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -59,17 +60,18 @@
             this.dgv_1.Name = "dgv_1";
             this.dgv_1.RowHeadersVisible = false;
             this.dgv_1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgv_1.Size = new System.Drawing.Size(876, 322);
+            this.dgv_1.Size = new System.Drawing.Size(584, 381);
             this.dgv_1.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 39);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(876, 41);
+            this.panel2.Size = new System.Drawing.Size(584, 41);
             this.panel2.TabIndex = 6;
             // 
             // panel3
@@ -137,7 +139,7 @@
             0,
             0,
             0});
-            this.r.ValueChanged += new System.EventHandler(this.n_ValueChanged);
+            this.r.ValueChanged += new System.EventHandler(this.N_ValueChanged);
             // 
             // panel1
             // 
@@ -150,19 +152,19 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(876, 39);
+            this.panel1.Size = new System.Drawing.Size(584, 39);
             this.panel1.TabIndex = 0;
             // 
             // btn_calcular
             // 
             this.btn_calcular.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_calcular.Location = new System.Drawing.Point(771, 0);
+            this.btn_calcular.Location = new System.Drawing.Point(479, 0);
             this.btn_calcular.Name = "btn_calcular";
             this.btn_calcular.Size = new System.Drawing.Size(105, 39);
             this.btn_calcular.TabIndex = 2;
             this.btn_calcular.Text = "Calcular";
             this.btn_calcular.UseVisualStyleBackColor = true;
-            this.btn_calcular.Click += new System.EventHandler(this.btn_calcular_Click);
+            this.btn_calcular.Click += new System.EventHandler(this.Btn_calcular_Click);
             // 
             // cBox_metodo
             // 
@@ -175,7 +177,7 @@
             this.cBox_metodo.Name = "cBox_metodo";
             this.cBox_metodo.Size = new System.Drawing.Size(121, 28);
             this.cBox_metodo.TabIndex = 0;
-            this.cBox_metodo.SelectedIndexChanged += new System.EventHandler(this.cBox_metodo_SelectedIndexChanged);
+            this.cBox_metodo.SelectedIndexChanged += new System.EventHandler(this.CBox_metodo_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -201,7 +203,7 @@
             this.num.Location = new System.Drawing.Point(177, 6);
             this.num.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.num.Minimum = new decimal(new int[] {
-            3,
+            1,
             0,
             0,
             0});
@@ -213,21 +215,33 @@
             0,
             0,
             0});
-            this.num.ValueChanged += new System.EventHandler(this.n_ValueChanged);
+            this.num.ValueChanged += new System.EventHandler(this.N_ValueChanged);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Location = new System.Drawing.Point(479, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 41);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Atras";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Atras_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 402);
+            this.ClientSize = new System.Drawing.Size(584, 461);
             this.Controls.Add(this.dgv_1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Gauss Jordan / Inversa / Simplex";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -255,6 +269,7 @@
         private System.Windows.Forms.RadioButton sMax;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown r;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -13,7 +13,7 @@ namespace GaussJordanReal {
             this.cc = dt.Columns.Count;
         }
 
-        private Boolean construMInv() {//construimos una matriz identidad con las dimesiones de la matriz original
+        private Boolean ConstruMInv() {//construimos una matriz identidad con las dimesiones de la matriz original
             int i, j;
             try {
                 mInv = new double[fc, cc];
@@ -29,7 +29,7 @@ namespace GaussJordanReal {
             }
         }
 
-        private Boolean dt_mtz() {
+        private Boolean Dt_mtz() {
             int i, j;
             try {
                 mtz = new double[fc, cc];
@@ -46,10 +46,10 @@ namespace GaussJordanReal {
             }
         }
 
-        private Boolean unirMtz() {//unimos la matriz original a la matriz identidad
+        private Boolean UnirMtz() {//unimos la matriz original a la matriz identidad
             try {
-                construMInv();
-                dt_mtz();
+                ConstruMInv();
+                Dt_mtz();
                 int i, j;
                 mUni = new double[fc, cc * 2];
                 for(i = 0; i < fc; i++) {
@@ -64,15 +64,15 @@ namespace GaussJordanReal {
             }
         }
 
-        public double[,] mtzUnida() {
+        public double[,] MtzUnida() {
             if(fc != cc)
                 return null;
-            unirMtz();
-            calcular();
+            UnirMtz();
+            Calcular();
             return mUni;
         }
 
-        void calcular() {
+        void Calcular() {
             int i, //columna piloto
                 j, //fila pivote
                 k, //colimpa pivote
@@ -88,13 +88,13 @@ namespace GaussJordanReal {
                         fpiv[k] = mUni[j, k];//Llenamos un arreglo con la fila de la matriz
                     }
                     if(i == j) {//si i = j es una posicion de la diagonal y sebe ser 1
-                        uno(ref fpiv, i);//hacemos 1 la posicion piloto de la fila pivote
+                        Uno(ref fpiv, i);//hacemos 1 la posicion piloto de la fila pivote
                         for(k = 0; k < fc; k++) {//recorremos nuevamente la matriz[filas]
                             for(l = 0; l < n; l++) {//[columnas]
                                 fcer[l] = mUni[k, l];//tomamos la fila
                             }
                             if(fpiv != fcer)//verificamos que no se la fila pivote
-                                cero(ref fcer, fpiv, i);//si no es, hacemos 0 la posicion piloto
+                                Cero(ref fcer, fpiv, i);//si no es, hacemos 0 la posicion piloto
                             for(l = 0; l < n; l++) {//cargamos la fila en la matriz
                                 mUni[k, l] = fcer[l];
                             }
@@ -107,7 +107,7 @@ namespace GaussJordanReal {
             }//evaluamos la siguiente columna
         }
 
-        private void uno(ref double[] fila, int ind) {
+        private void Uno(ref double[] fila, int ind) {
             double pil = 1 / fila[ind];//calcular inverso de elemento
             int i, n = fila.Length;
             for(i = 0; i < n; i++) {
@@ -115,7 +115,7 @@ namespace GaussJordanReal {
             }
         }
 
-        void cero(ref double[] fila, double[] piv, int ind) {
+        private void Cero(ref double[] fila, double[] piv, int ind) {
             double pil = fila[ind] * -1;//calculamos el simetrico del elemento piloto
             int i, n = fila.Length;
             for(i = 0; i < n; i++) {
